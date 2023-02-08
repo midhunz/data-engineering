@@ -77,6 +77,41 @@ The internal details of the Hadoop Distributed File System (HDFS) include:
 
 HDFS is designed to be a highly scalable and reliable storage system for big data. Its architecture, with the NameNode and DataNode, allows HDFS to store large amounts of data in a distributed manner, while providing high availability and fault tolerance. By providing a simple coherency model and efficient read and write operations, HDFS makes it easy for Hadoop to process large amounts of data quickly and efficiently.
 
+### Hadoop Data node vs Name node
+
+The Hadoop Distributed File System (HDFS) consists of two main components: the NameNode and the DataNode.
+
+The NameNode is the master node in HDFS and is responsible for managing the file system namespace, including maintaining metadata about the files and directories stored in the file system. The NameNode also coordinates access to the data stored in the file system and keeps track of the location of data blocks on the DataNodes.
+
+The DataNode is a worker node in HDFS and is responsible for storing the actual data blocks of a file. The DataNode stores the blocks of data in its local disk and serves the data to clients who request it. The DataNode also communicates with the NameNode to report on the state of its stored data blocks and to receive instructions for reading and writing data.
+
+In summary, the NameNode is responsible for managing the metadata of the file system and coordinating access to the data stored in HDFS, while the DataNode is responsible for storing the actual data blocks and serving data to clients.
+
+***More***
+
+    *** NameNode
+
+    NameNode is the master node in the Hadoop Distributed File System (HDFS) and is responsible for managing the metadata of the file system. It stores the metadata in memory and maintains a directory tree of all files and directories in the file system, including information about the location of each file's data blocks, the replication factor of the data, and the status of each block.
+
+    The NameNode also coordinates access to the data stored in the HDFS. When a client wants to read or write data, it communicates with the NameNode to find the location of the data blocks, and then communicates directly with the appropriate DataNodes to read or write the data.
+
+    Additionally, the NameNode is responsible for monitoring the health of the DataNodes and the data stored on them. If a DataNode fails or a data block becomes unavailable, the NameNode is responsible for re-replicating the data to ensure that it is still available and can be accessed by clients.
+
+    
+
+    *** Data Node
+
+    A DataNode is a worker node in the Hadoop Distributed File System (HDFS). It is responsible for storing the actual data blocks of a file and serving the data to clients who request it. The DataNode stores the blocks of data in its local disk, and communicates with the NameNode to report on the state of its stored data blocks and to receive instructions for reading and writing data.
+
+    When a client wants to write data to HDFS, the NameNode determines which DataNode should store the data based on the file's replication factor and the state of the DataNodes. The client then writes the data directly to the selected DataNode, which stores the data blocks on its local disk. When a client wants to read data from HDFS, the NameNode directs the client to the appropriate DataNode, which serves the data directly to the client.
+
+    In addition to serving data, the DataNode is responsible for periodically reporting the state of its stored data blocks to the NameNode. This includes information such as the availability of each block and the number of replicas that exist for each block. The NameNode uses this information to maintain an up-to-date view of the file system and to ensure that data is always available and accessible to clients.
+
+
+
+
+
+
 ### HDFS commands
 
 Here are some basic commands that you can use to interact with HDFS:
@@ -99,3 +134,6 @@ Here are some basic commands that you can use to interact with HDFS:
 1.  hdfs dfs -df: Show the capacity, used space, and remaining space in HDFS
 1.  hdfs dfs -count: Count the number of directories, files, and bytes in HDFS
 1.  hdfs dfs -help: Show the usage information for a specific HDFS command
+
+
+
